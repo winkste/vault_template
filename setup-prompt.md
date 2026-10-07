@@ -118,6 +118,13 @@ Additional fields per type: decisions (`type: decision`, in `decisions/`, file n
 
 ## Technical implementation
 
+> **Ready-made kit:** If the `vault-kit/` folder from the template repository is available, do **not** write the scripts, schema, templates and hook from scratch. Copy the contents of `vault-kit/` into the vault root, then adapt `_meta/vault.config.json` to the parameters (sensitivity levels, restricted folder, folder defaults, owner names) and run:
+> ```sh
+> python3 -m venv .venv && .venv/bin/pip install -r _meta/scripts/requirements.txt
+> git config core.hooksPath _meta/hooks
+> ```
+> The descriptions below then serve as the specification of what the kit does.
+
 - `git init`, `.gitignore`: `.obsidian/workspace*.json`, `.trash/`, `.DS_Store`, `.venv/`, `__pycache__/`, local agent settings. Otherwise version `.obsidian/`; keep Obsidian Sync off if content is confidential.
 - Python 3, a dedicated `.venv` inside the vault, standard library + `pyyaml` + `jsonschema` only. Every script supports `--help` and `--json` and exits non-zero on errors.
 - **`validate.py`:** frontmatter against the schema; `id` = file name and unique; file names; sensitivity never looser than the folder default; folder-specific required fields; broken wikilinks (ignoring code blocks); secret patterns (with human approval via the comment `validate:allow-secret`). Output masks paths and details from the most confidential folder. Option **`--staged`**: check only staged files in their staged version, links/ids against the git index – so unfinished notes never block unrelated commits.

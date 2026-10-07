@@ -1,0 +1,12 @@
+#!/bin/sh
+# Rejects the commit if staged files violate the rules in _meta/CONVENTIONS.md.
+# Activate with: git config core.hooksPath _meta/hooks
+ROOT=$(git rev-parse --show-toplevel) || exit 2
+PY="$ROOT/.venv/bin/python"
+[ -x "$PY" ] || PY=python3
+"$PY" "$ROOT/_meta/scripts/validate.py" --staged --quiet
+status=$?
+if [ $status -ne 0 ]; then
+    echo "pre-commit: commit rejected – see messages above (_meta/CONVENTIONS.md)." >&2
+fi
+exit $status

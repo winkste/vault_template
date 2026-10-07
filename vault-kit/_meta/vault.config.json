@@ -1,0 +1,18 @@
+{
+  "sensitivity_levels": ["public", "internal", "confidential"],
+  "default_sensitivity": "internal",
+  "folder_sensitivity": {
+    "90_confidential/": "confidential",
+    "30_control/": "internal"
+  },
+  "restricted_folder": "90_confidential/",
+  "owners": ["human", "github-copilot", "claude-code"],
+  "frontmatter_optional": ["10_raw/"],
+  "raw_dir": "10_raw",
+  "log_dir": "40_log",
+  "tasks_file": "05_tasks/tasks.md",
+  "folder_types": {
+    "05_tasks/": "tasklist",
+    "40_log/": "log"
+  }
+}

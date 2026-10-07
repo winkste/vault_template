@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Obsidian: device-specific state
+.obsidian/workspace*.json
+.obsidian/workspace
+.trash/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Local agent settings
+.claude/settings.local.json
